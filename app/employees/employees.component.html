@@ -1,0 +1,33 @@
+
+<div>
+    <h2>{{title}}</h2>
+
+<label>Filter by</label><br>
+<input type="text" id="filter" placeholder="search by first letter of name" maxlength="1" [(ngModel)]="search">
+<br>
+<br>
+<label id="count">Total Number of Employees : {{employees.length}}</label>
+<br>
+<br><br>
+<table border='1'>
+<th>Emp ID</th><th>Name</th><th>Location</th><th>Email</th>
+<th>Mobile</th>
+<th>Edit</th>
+<th>Delete</th>
+
+ 
+        <tr *ngFor="let employee of employees| employeeFilter:search">
+           <td> <a [routerLink]="['/details']" [queryParams]="{ empid: employee.id}" >
+                {{employee.id}}</a></td>
+            <td>{{employee.name}}</td>    
+             <td>{{employee.location}}</td> 
+              <td>{{employee.email}}</td>
+               <td>{{employee.mobile}}</td>
+               <td><a [routerLink]="['/editEmployee']" [queryParams]="{ empid: employee.id}">Edit</a></td>
+               <td  (click)="deleteEmployee(employee.id)"><a>Delete</a></td>
+        </tr>
+       
+</table>
+
+       
+</div>
